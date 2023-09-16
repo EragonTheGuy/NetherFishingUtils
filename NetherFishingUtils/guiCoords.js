@@ -32,5 +32,9 @@ export const data = new PogObject("NetherFishingUtils", {
     "membraneDifference": {
         "x": 0,
         "y": 0
+    },
+    "bait": {
+        "x": 0,
+        "y": 0
     }
 }, "guiCoords.json")

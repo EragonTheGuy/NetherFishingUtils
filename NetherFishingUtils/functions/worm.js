@@ -1,6 +1,8 @@
 import PogObject from "../../PogData"
 import Settings, {Sounds} from "../configOne/config"
 import Skyblock from "../../BloomCore/Skyblock";
+import { data } from "../guiCoords"
+import {nonPingScs, lavaScs, waterScs, allScs, scMessages, lsScs} from "../scsLists";
 
 let lifetimeMembranes = new PogObject("NetherFishingUtils", {
     lifetimeMembranes: 0
@@ -20,7 +22,30 @@ let fetchCurrentMembranes = true;
 
 let flashCounter = 0;
 
-function wormStuff() {
+let lootShareCounter;
+
+register('entityDeath', (entity) => {
+
+    //flash drop alert
+    if(Skyblock.area == "Crimson Isle" && entity.getName().removeFormatting().includes("Guardian")) {
+        Player.getInventory().getItems().forEach(item => {
+            if(item?.getName() == "Enchanted Book" && item?.getLore()?.includes("Flash")) {
+                flashCounter++;
+                if(Settings.flashText) {
+                    Client.showTitle(Settings.flashText, Settings.flashSubtext, 1, Settings.stTime * 100, 1)
+                }
+                
+                if(Settings.flashPing) {
+                    new Sound({source: Sounds[Settings.flashSound], priority: true}).play()
+                }
+            }
+        })
+    }
+
+    if(Skyblock.area != "Crystal Hollows") return
+
+    if(entity.getName() != "Silverfish" || Skyblock.area != "Crystal Hollows") return;
+
     if(fetchCurrentMembranes) {
         Player.getInventory().getItems().forEach(item => {
             if(item?.getName()?.removeFormatting() == "Worm Membrane") {
@@ -34,7 +59,6 @@ function wormStuff() {
     wormCounter++;
 
     if(wormCounter >= 15 && wormCounter < 50) {
-        ChatLib.chat(dieing)
         dieing = true
     };
 
@@ -43,8 +67,6 @@ function wormStuff() {
     }
 
     if(wormCounter == 60) {
-        ChatLib.chat(entityCounter)
-        ChatLib.chat("falsified")
         prewarningTriggered = false;
         warningTriggered = false;
         dieing = false;
@@ -71,35 +93,7 @@ function wormStuff() {
         membranesBefore = 0;
         } , 1000)
     }
-}
 
-register('entityDeath', (entity) => {
-
-    //flash drop alert
-    ChatLib.chat(entity.getName().removeFormatting())
-    if(Skyblock.area == "Crimson Isle" && entity.getName().removeFormatting().includes("Guardian")) {
-        ChatLib.chat("thunder died")
-        Player.getInventory().getItems().forEach(item => {
-            if(item.getName() == "Enchanted Book" && item.getLore().includes("Flash")) {
-                flashCounter++;
-                if(Settings.flashText) {
-                    Client.showTitle(Settings.flashText, Settings.flashSubtext, 1, Settings.stTime * 100, 1)
-                }
-                
-                if(Settings.flashPing) {
-                    new Sound({source: Sounds[Settings.flashSound], priority: true}).play()
-                }
-            }
-        })
-    }
-})
-
-register("entityDeath", (entity) => {
-
-    if(Skyblock.area != "Crystal Hollows") return
-
-    if(entity.getName() != "Silverfish" || Skyblock.area != "Crystal Hollows") return;
-    wormStuff()
 })
 
 register('command', () => {
@@ -118,3 +112,76 @@ register("chat", () => {
     warningTriggered = false;
     dieing = false;
 }).setCriteria("Your Kill Combo has expired! You reached a ${combo} Kill Combo!")
+
+register("renderOverlay", () => {
+    if(Skyblock.area == "Crystal Hollows") {
+        if(Settings.membraneDifferenceCounter) {
+            Renderer.drawString("Membranes gained this killing: " + membraneDifference?.toString(), data.membraneDifference.x, data.membraneDifference.y)
+        }
+        if(Settings.membranesInInv) {
+            Renderer.drawString("Total membranes gained this session: " + gainedMembranes?.toString(), data.gainedMembranes.x, data.gainedMembranes.y)
+        }
+    }
+})
+
+function mobcap() {
+    World.getAllEntities().forEach(entity => {
+        if (Skyblock.area == "Crimson Isle") {
+            lavaScs.forEach(index => {
+                if (!entity.getName().includes(index)) return
+
+                entityCounter++;
+
+                //apparently this is the mobcap???
+                if (entityCounter < 55) return
+
+                Client.showTitle("&r&cMobcap reached!", "", 1, 30, 1);
+            })
+            return
+        }
+
+        allScs.forEach(index => {
+            if (!entity.getName().includes(index)) return
+
+            entityCounter++;
+
+            if (entityCounter >= 55 && entityCounter < 59 && Settings.mobCapPre && !prewarningTriggered) {
+                entityCounter++
+                Client.showTitle("&r&cMobcap prewarning!", "", 1, 30, 1)
+                if(Settings.mobCapPreChat) {ChatLib.say("/pc Mobcap almost reached! (5 mobs)")}
+                if(Settings.capClosePing) {new Sound({source: Sounds[Settings.capCloseSound], priority: true}).play()}
+                prewarningTriggered = true;
+                return
+            }
+
+            if (entityCounter >= 60 && !warningTriggered) {
+                
+                if(Settings.capPing) {new Sound({source: Sounds[Settings.capSound], priority: true}).play()}
+                Client.showTitle("&r&cMobcap reached!", "", 1, 30, 1);
+                warningTriggered = true;
+
+                return
+            }
+        })
+    })
+}
+
+
+//mob cap warning and catch counter
+register('step', () => {
+    if(dieing) return;
+    entityCounter = 0;
+    if (!Settings.mobCap) return
+
+    mobcap()
+}).setFps(2)
+
+register("chat", () => {
+    lootShareCounter++;
+    if(lootShareCounter >= 10) {
+        prewarningTriggered = false;
+        warningTriggered = false;
+        dieing = false;
+        lootShareCounter = 0;
+    }
+}).setCriteria("&r&e&lLOOT SHARE").setContains()

@@ -4,12 +4,14 @@ import Settings2 from "./configTwo/config2";
 
 import Skyblock from "../BloomCore/Skyblock";
 import { data } from "./guiCoords"
+import {EntityArmorStand, EntityItem} from "./const"  
 
 import "./functions/timerAndCatches"
 import "./functions/blacklist"
 import "./functions/worm"
 import "./functions/bobber"
 import "./functions/guiMove"
+import "./functions/bait"
 import {nonPingScs, lavaScs, waterScs, allScs, scMessages, lsScs} from "./scsLists";
 
 let soundWarning = true;
@@ -27,16 +29,6 @@ let doubleHook = true;
 let prewarningTriggered = false;
 let warningTriggered = false;
 let dieing = false;
-
-const EntitySilverfish = Java.type("net.minecraft.entity.monster.EntitySilverfish")
-const EntityPlayer = Java.type("net.minecraft.entity.player.EntityPlayer")
-const Runtime = Java.type("java.lang.Runtime")
-const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand")
-const Monster = Java.type("net.minecraft.entity.monster")
-const S0FPacketSpawnMob = Java.type("net.minecraft.network.play.server.S0FPacketSpawnMob")
-const S35PacketUpdateTileEntity = Java.type("net.minecraft.network.play.server.S14PacketEntity")
-const S15PacketEntityRemove = Java.type("net.minecraft.network.play.server.S14PacketEntity.S15PacketEntityRelMove")
-const EntityItem = Java.type("net.minecraft.entity.item.EntityItem");
 
 let currenthpint;
 let maxhpint;
@@ -128,7 +120,7 @@ doubleHookMsg.forEach(message => {
 })
 
 register('chat', () => {
-    if(Settings.vialText) {
+    if(Settings2.vialText) {
         Client.showTitle(Settings2.vialText, Settings2.vialSubtext, 1, Settings2.stTime * 100, 1)
     }
     
@@ -161,55 +153,6 @@ register("chat", () => {
         return;
 		}
 }).setCriteria("You have angered a legendary creature... Lord Jawbus has arrived.")
-
-
-function mobcap() {
-    World.getAllEntities().forEach(entity => {
-        if (Skyblock.area == "Crimson Isle") {
-            lavaScs.forEach(index => {
-                if (!entity.getName().includes(index)) return
-
-                entityCounter++;
-
-                //apparently this is the mobcap???
-                if (entityCounter < 55) return
-
-                Client.showTitle("&r&cMobcap reached!", "", 1, 30, 1);
-            })
-            return
-        }
-
-        allScs.forEach(index => {
-            if (!entity.getName().includes(index)) return
-            entityCounter++;
-
-            if (entityCounter >= 55 && entityCounter < 59 && Settings.mobCapPre && !prewarningTriggered) {
-                entityCounter++
-                Client.showTitle("&r&cMobcap prewarning!", "", 1, 30, 1)
-                if(Settings.mobCapPreChat) {ChatLib.say("/pc Mobcap almost reached! (5 mobs)")}
-                if(Settings.capClosePing) {new Sound({source: Sounds[Settings.capCloseSound], priority: true}).play()}
-                prewarningTriggered = true;
-                return
-            }
-
-            if (entityCounter >= 60 && !warningTriggered) {
-                if(Settings.capPing) {new Sound({source: Sounds[Settings.capSound], priority: true}).play()}
-                Client.showTitle("&r&cMobcap reached!", "", 1, 30, 1);
-                warningTriggered = true;
-                return
-            }
-        })
-    })
-}
-//mob cap warning and catch counter
-register('step', () => {
-    if(dieing) return;
-
-    entityCounter = 0;
-    if (!Skyblock.inSkyblock || !Settings.mobCap) return
-
-    mobcap()
-}).setFps(2)
 
 //Boss Bar --------------------------------
 
@@ -316,15 +259,6 @@ register("renderEntity", (entity, pos, partialTick, event) => {
 
 //--------------------- String rendering ------------------------
 register('renderOverlay', () => {
-
-    if(Skyblock.area == "Crystal Hollows") {
-        if(Settings.membraneDifferenceCounter) {
-            Renderer.drawString("membranes gained this killing: " + membraneDifference?.toString(), data.membraneDifference.x, data.membraneDifference.y)
-        }
-        if(Settings.membranesInInv) {
-            Renderer.drawString("total membranes gained this session: " + gainedMembranes?.toString(), data.gainedMembranes.x, data.gainedMembranes.y)
-        }
-    }
 
     if(Settings.totemTimer && totemTime && totemOwner) {
         Renderer.drawString(` &5&l${totemOwner}\n &5&l${totemTime}`, data.totemTimer.x, data.totemTimer.y)

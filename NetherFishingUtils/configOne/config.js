@@ -15,7 +15,7 @@ assetsFolder.listFiles().forEach((it) => {
     }
 })
 
-@Vigilant("NetherFishingUtils", "Settings", {
+@Vigilant("NetherFishingUtils/configOne", "Settings", {
     getSubcategoryComparator: () => (a, b) => {
         // These function examples will sort the subcategories by the order in the array, so eeeeeee
         // will be above Category.
@@ -64,6 +64,7 @@ class Settings {
     membranesKillingMove = new Gui();
     gainedMembranesMove = new Gui();
     totemTimerMove = new Gui();
+    baitMove = new Gui();
 
 //sounds -------------------------------------------------
 
@@ -167,7 +168,7 @@ class Settings {
     empPing = false;
 
     @SelectorProperty({
-        name:"sea Emperor spawn sound",
+        name:"Sea Emperor spawn sound",
         description:"Changes the notification sound played for emp spawns",
         category:"Sea Creature Sounds",
         subcategory: "Normal",
@@ -825,9 +826,30 @@ highPingTimer = true;
     category: "Extras",
 })
 rgbTimer = true;
+
+@SwitchProperty({
+    name: "Bait display",
+    description: "Displays bait currently being used",
+    category: "Extras",
+})
+baitText = true;
+
+@SwitchProperty({
+    name: "Bait image display",
+    description: "Displays bait currently being used with an image",
+    category: "Extras",
+})
+baitImg = false;
+
+@ButtonProperty({
+    name: "Bait display text",
+    description: "Moves the Bait display text",
+    category: "Extras",
+})
+moveBaitText() {
+     this.baitMove.open()
+};
 }
-
-
 
 
 export default new Settings();

@@ -27,6 +27,10 @@ register("dragged", (mx, my, x, y) => {
         data.scsPerMinText.x = x;
         data.scsPerMinText.y = y;
         data.save();
+    } else if(Settings.baitMove.isOpen()) {
+        data.bait.x = x;
+        data.bait.y = y;
+        data.save();
     } else if(Settings.gainedMembranesMove.isOpen()) {
         data.gainedMembranes.x = x;
         data.gainedMembranes.y = y;

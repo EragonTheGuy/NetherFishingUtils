@@ -1,7 +1,7 @@
 import {@Vigilant, @TextProperty, @ColorProperty, @ButtonProperty, @SwitchProperty, @PercentSliderProperty, @SelectorProperty, @NumberProperty, Color} from 'Vigilance';
 
 
-@Vigilant("NetherFishingUtils", "Settings", {
+@Vigilant("NetherFishingUtils/configTwo", "Settings", {
     getSubcategoryComparator: () => (a, b) => {
         // These function examples will sort the subcategories by the order in the array, so eeeeeee
         // will be above Category.

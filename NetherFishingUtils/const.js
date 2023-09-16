@@ -1,0 +1,13 @@
+export const EntitySilverfish = Java.type("net.minecraft.entity.monster.EntitySilverfish")
+export const EntityPlayer = Java.type("net.minecraft.entity.player.EntityPlayer")
+export const Runtime = Java.type("java.lang.Runtime")
+export const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand")
+export const Monster = Java.type("net.minecraft.entity.monster")
+export const S0FPacketSpawnMob = Java.type("net.minecraft.network.play.server.S0FPacketSpawnMob")
+export const S35PacketUpdateTileEntity = Java.type("net.minecraft.network.play.server.S14PacketEntity")
+export const S15PacketEntityRemove = Java.type("net.minecraft.network.play.server.S14PacketEntity.S15PacketEntityRelMove")
+export const EntityItem = Java.type("net.minecraft.entity.item.EntityItem");
+export const MCItem = Java.type("net.minecraft.item.Item")
+export const SkullItem = Java.type("net.minecraft.item.ItemSkull")
+export const BP = Java.type("net.minecraft.util.BlockPos")
+export const Blocc = Java.type("net.minecraft.block.Block");
