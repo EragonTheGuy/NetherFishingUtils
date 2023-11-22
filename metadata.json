@@ -1,0 +1,8 @@
+{
+"name": "NetherFishingUtils",
+"creator": "Eragon",
+"version": "0.11.0",
+"entry": "index.js",
+"description": "/nfu for Settings",
+"requires": ["Vigilance", "RenderLib", "PogData", "BloomCore"]
+}

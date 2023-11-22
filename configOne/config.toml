@@ -1,0 +1,117 @@
+
+[sea_creature_sounds]
+
+	[sea_creature_sounds.normal]
+		sea_emperor_spawn_sound = 0
+		agarimoo_spawn_ping = false
+		zombie_miner_spawn_ping = false
+		night_squid_spawn_sound = 0
+		carrot_king_ping = false
+		agarimoo_spawn_sound = 0
+		carrot_king_sound = 0
+		zombie_miner_spawn_sound = 0
+		night_squid_spawn_ping = false
+		sea_emperor_spawn_ping = false
+
+	[sea_creature_sounds.winter]
+		grinch_spawn_ping = false
+		nutcracker_spawn_ping = false
+		reindrake_spawn_sound = 0
+		grinch_spawn_sound = 0
+		reindrake_spawn_ping = false
+		yeti_spawn_sound = 0
+		yeti_spawn_ping = false
+		nutcracker_spawn_sound = 0
+
+	[sea_creature_sounds.crimson_isle]
+		phlegblast_spawn_ping = false
+		jawbus_sound = 0
+		thunder_sound = 0
+		thunder_ping = false
+		jawbus_ping = false
+		phlegblast_spawn_sound = 0
+
+	[sea_creature_sounds.shark_festival]
+		great_white_shark_spawn_ping = false
+		great_white_shark_sound = 0
+		tiger_white_shark_spawn_ping = false
+		tiger_white_shark_sound = 0
+
+	[sea_creature_sounds.spooky_festival]
+		werewolf_spawn_ping = false
+		werewolf_spawn_sound = 0
+		grim_reaper_spawn_sound = 0
+		grim_reaper_spawn_ping = false
+		phantom_fisher_spawn_sound = 0
+		phantom_fisher_spawn_ping = false
+
+	[sea_creature_sounds.misc]
+		double_hook_ping = true
+		double_hook_sound = 2
+
+[worm]
+	membrane_difference = true
+	membrane_counter = false
+	totem_timer = false
+
+[barn]
+	mob_cap_almost_reached_sound = 0
+	scs = false
+	mobcap_almost_reached_ping = false
+	mob_cap_prewarning = false
+	mob_cap_warning = false
+	mobcap_reached_ping = false
+	catches_per_minute = false
+	catches = false
+	mobcap_reached_sound = 0
+	fishing_timer_config = "5"
+	fishing_timer = true
+	scs_per_minute = false
+	mob_cap_party_prewarning = false
+
+[extras]
+	catch_notification = false
+	bait_display = true
+	bait_image_display = false
+	rgb_catch_timer = true
+	graphed_sc_stats = false
+	high_ping_timer = true
+	lootshare_sc_boss_bar = true
+	big_catch_timer = true
+
+[drop_sounds]
+
+	[drop_sounds.drops]
+		vial_drop_ping = false
+		flash_drop_sound = 3
+		vial_drop_sound = 0
+		flash_drop_ping = true
+
+[party]
+	thunder_party_notification = true
+	jawbus_party_notification = true
+	vanquisher_party_notification = true
+
+[bobber]
+	highlighted_bobber = false
+
+	[bobber.bobbercolors]
+		blue_percentage = 0.0
+		rgb = false
+		red_percentage = 0.0
+		green_percentage = 0.0
+
+[misc]
+
+	[misc.blasklist_options]
+		lobby_blacklist_timer = 0
+
+	[misc.blacklist]
+		lobby_blacklist = false
+		lobby_player_blacklist = false
+
+	[misc.bobber]
+		cap_at_10 = false
+		bobber_counter = true
+		average_counter = false
+

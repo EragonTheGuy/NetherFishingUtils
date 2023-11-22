@@ -1,0 +1,82 @@
+
+[text]
+	title_timer = 0.14615385
+
+	[text.normal]
+		zombie_miner_subtext = ""
+		night_squid_text = "&0Night Squid!"
+		water_hydra_subtext = ""
+		night_squid_title = false
+		agarimoo_title = false
+		agarimoo_subtext = ""
+		carrot_king_subtext = ""
+		water_hydra_title = false
+		agarimoo_text = "&4Aga&frimoo!"
+		water_hydra_text = "&1Water Hydra!"
+		sea_emperor_text = "&1Sea Emperor!"
+		carrot_king_text = "&aCarrot King!"
+		sea_emperor_subtext = ""
+		zombier_miner_title = true
+		zombie_miner_text = "&7Zombie Miner!"
+		sea_emperor_title = true
+		night_squid_subtext = ""
+		carrot_king_title = false
+
+	[text.winter]
+		nutcracker_subtext = ""
+		reindrake_text = "&fReindrake!"
+		nutcracker_title = false
+		yeti_text = "&1Yeti!"
+		yeti_subtext = ""
+		nutcracker_text = "&aNutcracker!"
+		yeti_title = true
+		grinch_text = "&2Grinch!"
+		grinch_subtext = ""
+		reindrake_title = true
+		grinch_title = false
+		reindrake_subtext = ""
+
+	[text.crimson_isle]
+		thunder_subtext = ""
+		jawbus_subtext = ""
+		thunder_title = true
+		phlegblast_title = false
+		jawbus_title = true
+		thunder_text = "&3Thunder!"
+		jawbus_text = "&r&cJawbus!"
+		phlegblast_subtext = ""
+		phlegblast_text = "&7Phlegblast"
+
+	[text.shark_festival]
+		great_white_title = true
+		great_white_text = "&4Great White!"
+		great_white_subtext = ""
+		tiger_white_title = false
+		tiger_shark_subtext = ""
+		tiger_shark_text = "&7Tiger Shark!"
+
+	[text.spooky_festival]
+		werewolf_subtext = ""
+		phantom_fisher_title = true
+		grim_reaper_subtext = ""
+		werewolf_title = false
+		werewolf_text = "&0Werewolf!"
+		grim_reaper_text = "&0Grim Reaper!"
+		grim_reaper_title = true
+		phantom_fisher_text = "&8Phantom Fisher!"
+		phantom_fisher_subtext = ""
+
+	[text.drop_sounds]
+		vial_text = "&dRadioactive Vial!"
+		flash_title = true
+		flash_text = "&bFLASH!"
+		vial_title = true
+		flash_subtext = ""
+		vial_subtext = ""
+
+	[text.misc]
+		double_hook_text = ""
+		double_hook_subtext = "&aDouble Hook!"
+		double_hook_combination = false
+		double_hook_title = true
+
